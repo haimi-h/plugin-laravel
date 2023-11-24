@@ -13,9 +13,9 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.0.1"
         
         
-        "illuminate/support": "^8.0"
+        
     }
 }
