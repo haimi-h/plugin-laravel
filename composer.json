@@ -1,0 +1,21 @@
+{
+    "name": "arifplugin/arifpay",
+    "description": "arifpay laravel plugin",
+    "autoload": {
+        "psr-4": {
+            "Arifplugin\\Arifpay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Haimanot Hailu",
+            "email": "Haimih292@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1",
+        "php": "^7.4",
+        
+        "illuminate/support": "^8.0"
+    }
+}
