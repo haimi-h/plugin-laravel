@@ -1,12 +1,12 @@
 <?php
 
-namespace Arif\Arifpay\Helper;
+namespace Arifplugin\Arifpay\Helper;
 
-use Arif\Arifpay\Lib\Exception\ArifpayBadRequestException;
-use Arif\Arifpay\Lib\Exception\ArifpayException;
-use Arif\Arifpay\Lib\Exception\ArifpayNetworkException;
-use Arif\Arifpay\Lib\Exception\ArifpayNotFoundException;
-use Arif\Arifpay\Lib\Exception\ArifpayUnAuthorizedException;
+use Arifplugin\Arifpay\Lib\Exception\ArifpayBadRequestException;
+use Arifplugin\Arifpay\Lib\Exception\ArifpayException;
+use Arifplugin\Arifpay\Lib\Exception\ArifpayNetworkException;
+use Arifplugin\Arifpay\Lib\Exception\ArifpayNotFoundException;
+use Arifplugin\Arifpay\Lib\Exception\ArifpayUnAuthorizedException;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Carbon;
 

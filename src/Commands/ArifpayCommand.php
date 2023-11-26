@@ -1,6 +1,6 @@
 <?php
 
-namespace Arif\Arifpay\Commands;
+namespace Arifplugin\Arifpay\Commands;
 
 use Illuminate\Console\Command;
 
