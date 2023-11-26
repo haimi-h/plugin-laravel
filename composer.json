@@ -1,6 +1,7 @@
 {
     "name": "arifplugin/arifpay",
     "description": "arifpay laravel plugin",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Arifplugin\\Arifpay\\": "src/"
