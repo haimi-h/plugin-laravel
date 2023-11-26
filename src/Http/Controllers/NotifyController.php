@@ -16,6 +16,7 @@ class NotifyController extends Controller
 
     public function store()
     {
+        
         // Let's assume we need to be authenticated
         // to create a new post
         if (! auth()->check()) {
@@ -36,5 +37,6 @@ class NotifyController extends Controller
         ]);
 
         return redirect(route('posts.show', $post));
+        
     }
 }

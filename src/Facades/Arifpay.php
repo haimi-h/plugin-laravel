@@ -1,7 +1,7 @@
 <?php
 
-namespace Arifplugin\Arifpay\Facades;
-namespace Arifplugin\Arifpay;
+namespace Arif\Arifpay\Facades;
+namespace Arif\Arifpay;
 
 
 use Illuminate\Support\Facades\Facade;

@@ -33,12 +33,11 @@ class ArifpayCheckoutResponse implements JsonSerializable
         ];
     }
 
-    public static function fromJson($data)
+    public function __toString()
     {
-        return new ArifpayCheckoutResponse(
-            $data["sessionId"], 
-            urldecode($data["paymentUrl"]), 
-            urldecode($data["cancelUrl"]), 
-            $data["totalAmount"]);
+        return "Session ID: " . $this->session_id . "\n" .
+               "Payment URL: " . $this->payment_url . "\n" .
+               "Cancel URL: " . $this->cancel_url . "\n" .
+               "Total Amount: " . $this->total_amount . "\n";
     }
 }

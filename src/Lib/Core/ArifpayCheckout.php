@@ -33,26 +33,35 @@ class ArifpayCheckout
         if ($option == null) {
             $option = new ArifpayOptions(false);
         }
-
+    
         try {
             $basePath = $option->sandbox ? '/sandbox' : '';
-
+    
+            // Convert the request data to JSON string
+            $jsonData = json_encode($arifpayCheckoutRequest->jsonSerialize());
+    
+            // Use the raw JSON data in the HTTP request
             $response = $this->http_client->post(Arifpay::API_VERSION . "https://gateway.arifpay.org/api/sandbox/checkout/session", [
-                RequestOptions::JSON => $arifpayCheckoutRequest->jsonSerialize(),
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'body' => $jsonData,
             ]);
-
-            $arifAPIResponse = ArifpayAPIResponse::fromJson(json_decode($response->getBody(), true));
             
+    
+            // Log the entire response body for debugging
+            $apiResponseBody = json_decode($response->getBody()->getContents(), true);
             
+    
+            $arifAPIResponse = ArifpayAPIResponse::fromJson($apiResponseBody);
+    
             return new ArifpayCheckoutResponse(
-
                 $arifAPIResponse->data["sessionId"],
                 urldecode($arifAPIResponse->data["paymentUrl"]),
                 urldecode($arifAPIResponse->data["cancelUrl"]),
                 $arifAPIResponse->data["totalAmount"]
-                
             );
-            
         } catch (ConnectionErrorException $e) {
             throw new ArifpayNetworkException();
         } catch (ClientException $e) {
@@ -60,6 +69,7 @@ class ArifpayCheckout
             throw $e;
         }
     }
+    
     
 
     public function fetch(string $session_iD, ArifpayOptions $option = null): ArifpayCheckoutSession
@@ -71,7 +81,7 @@ class ArifpayCheckout
         try {
             $basePath = $option->sandbox ? '/sandbox' : '';
             
-            $response = $this->http_client->get(Arifpay::API_VERSION."$basePath/checkout/session/$session_iD");
+            $response = $this->http_client->get(Arifpay::API_VERSION."https://gateway.arifpay.org/api/sandbox/checkout/session/$session_iD");
 
             $arifAPIResponse = ArifpayAPIResponse::fromJson(json_decode($response->getBody(), true));
 
@@ -93,7 +103,7 @@ class ArifpayCheckout
 
         try {
             $basePath = $option->sandbox ? '/sandbox' : '';
-            $response = $this->http_client->post(Arifpay::API_VERSION."$basePath/checkout/session/cancel/$session_iD");
+            $response = $this->http_client->post(Arifpay::API_VERSION."https://gateway.arifpay.org/api/sandbox/checkout/session/cancel/$session_iD");
 
             $arifAPIResponse = ArifpayAPIResponse::fromJson(json_decode($response->getBody(), true));
 
